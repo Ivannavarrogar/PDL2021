@@ -28,9 +28,10 @@ public class InicioCompilador {
             do {      
             token = lex.siguienteToken();
             } while(token != null);
+            lex.finLex();
 
             tokensFW.close();
-
+            errorFW.close();
 
         } catch (IOException e) {
             // TODO Auto-generated catch block

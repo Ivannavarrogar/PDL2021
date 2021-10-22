@@ -68,8 +68,8 @@ public class AnLex {
             lexema = "";
             posLinea++;
             return tk;
-         case "number":
-            tk = new Token("number", "" + 15);
+         case "int":
+            tk = new Token("int", "" + 15);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
@@ -89,8 +89,8 @@ public class AnLex {
             lexema = "";
             posLinea++;
             return tk;
-         case "alert":
-            tk = new Token("alert", "" + 18);
+         case "print":
+            tk = new Token("print", "" + 18);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
