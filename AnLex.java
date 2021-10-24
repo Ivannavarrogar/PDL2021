@@ -41,7 +41,7 @@ public class AnLex {
     */
    public void finLex() {
       Token.ficheroTokens(tokensArrayList);
-      // ts.ficheroTS();
+      //tablas.ficheroTS();
       Error.ficheroErrores(listaErrores);
       try {
          fr.close();
@@ -66,105 +66,105 @@ public class AnLex {
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+            
             return tk;
          case "int":
             tk = new Token("int", "" + 15);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+           
             return tk;
          case "string":
             tk = new Token("string", "" + 16);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+            
             return tk;
          case "let":
             tk = new Token("let", "" + 17);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+            
             return tk;
          case "print":
             tk = new Token("print", "" + 18);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+   
             return tk;
          case "input":
             tk = new Token("input", "" + 19);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+           
             return tk;
          case "break":
             tk = new Token("break", "" + 20);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+           
             return tk;
          case "function":
             tk = new Token("function", "" + 21);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+            
             return tk;
          case "return":
             tk = new Token("return", "" + 22);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+            
             return tk;
          case "default":
             tk = new Token("default", "" + 23);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+            
             return tk;
          case "switch":
             tk = new Token("switch", "" + 24);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+            
             return tk;
          case "case":
             tk = new Token("case", "" + 25);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+            
             return tk;
          case "true":
             tk = new Token("true", "" + 26);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+           
             return tk;
          case "false":
             tk = new Token("false", "" + 27);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+           
             return tk;
          case "if":
             tk = new Token("if", "" + 28);
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
-            posLinea++;
+           
             return tk;
          default:
             return tk;
@@ -224,6 +224,9 @@ public class AnLex {
                   break;
                case 'B':
                   lexema += caracter;
+                  if (posLinea==(linea.length()-1)){
+                     accion= accion + "M";
+                  }
                   break;
                case 'C':
                   tk = new Token("operRelacional", "" + 2);
@@ -380,6 +383,8 @@ public class AnLex {
       }
       if (posLinea == linea.length()) {
          posLinea = 0;
+         estado = 0;
+         lexema = "";
       }
       return tk;
    }

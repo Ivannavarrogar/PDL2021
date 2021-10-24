@@ -66,7 +66,7 @@ public class MTransiciones{
         matriz[2][IGUAL] = new Tupla(19, "J");
 
         //Logico
-        matriz[3][AND] = new Tupla(11, "B");
+        matriz[3][AND] = new Tupla(11, "BL");
         matriz[11][DIG] = new Tupla(12,"K");
         matriz[11][LET] = new Tupla(12,"K");
         matriz[11][COMILLAS] = new Tupla(12,"K");
@@ -108,19 +108,19 @@ public class MTransiciones{
         matriz[8][CIERRAP] = new Tupla(13,"OT");
         matriz[8][OTROS] = new Tupla(13,"OL");
         matriz[8][PORCEN] = new Tupla(13,"OL");
-        matriz[8][IGUAL] = new Tupla(1,"OAL");
+        matriz[8][IGUAL] = new Tupla(1,"OLA");
 
         //Cadenas
         matriz[9][DIG] = new Tupla(9, "BPL");
         matriz[9][LET] = new Tupla(9, "BPL");
         matriz[9][DEL] = new Tupla(9, "BPL");
         matriz[9][EOL] = new Tupla(9, "BPL");
-        matriz[9][OTROS] = new Tupla(9, "BL");
-        matriz[9][PORCEN] = new Tupla(9, "BL");
+        matriz[9][OTROS] = new Tupla(9, "BPL");
+        matriz[9][PORCEN] = new Tupla(9, "BPL");
         matriz[9][COMILLAS] = new Tupla(16, "BR");
-        matriz[9][PUNTOCOMA] = new Tupla(13,"BRT");
-        matriz[9][DOSPUNTOS] = new Tupla(9,"BL");
-        matriz[9][CIERRAP] = new Tupla(13,"BRT");
+        matriz[9][PUNTOCOMA] = new Tupla(9,"BPL");
+        matriz[9][DOSPUNTOS] = new Tupla(9,"BPL");
+        matriz[9][CIERRAP] = new Tupla(9,"BPL");
 
         
 
