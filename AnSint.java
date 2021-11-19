@@ -22,20 +22,22 @@ public class AnSint {
       this.parseFW = ParseFW;
       this.tablas =  tablas;
       this.lex = lexico;
-      construirAccion();
-      construirGoTo();
+     // construirAccion();
+     //construirGoTo();
     }
-
-    private void generarParse(int regla) {
+    private void aux()throws IOException{
+      Token token = lex.siguienteToken();
+    }
+   /* private void generarParse(int regla) {
       try {
           parseFW.append(" "+String.valueOf(regla));
           parseFW.flush();
       } catch (IOException e) {
           e.printStackTrace();
       }
-    }
+     } */
 
-    private int valorarK(int k, String acc){
+    /*private int valorarK(int k, String acc){
       String auxString= acc.substring(1, acc.length() - 1);
       String lista = "";
       int auxInt = Integer.parseInt(auxString);
@@ -1132,5 +1134,6 @@ public class AnSint {
     private void regla65(){
   
     }
-
+*/
+  
 }
