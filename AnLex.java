@@ -164,6 +164,11 @@ public class AnLex {
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
+         case "for":
+            tk = new Token("for", "" + 23);
+            tokenFW.write(tk.toString());
+            tokenFW.flush();
+            lexema = "";
            
             return tk;
          default:
@@ -255,7 +260,7 @@ public class AnLex {
                   valor = valor * 10 + Character.getNumericValue(caracter);
                   break;
                case 'J':
-                  tk = new Token("operAsignacion", "" + 4);
+                  tk = new Token("operAsignacionResto", "" + 4);
                   tokenFW.write(tk.toString());
                   tokenFW.flush();
                   lexema = "";

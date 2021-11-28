@@ -6,12 +6,12 @@ import java.util.HashMap;
      */
     public class TablaSimbolos {
 
-        //private String nombreTS;
+        private String nombreTS;
         private HashMap<Integer, Atributos> mapaAtributos;
         private Tablas tablas;
     
         public TablaSimbolos (String nombreTS, Tablas Tablas){
-            //this.nombreTS = nombreTS;
+            this.nombreTS = nombreTS;
             this.tablas = Tablas;
             mapaAtributos = new HashMap<Integer, Atributos>();
         
