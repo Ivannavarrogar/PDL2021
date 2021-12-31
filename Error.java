@@ -11,7 +11,7 @@ public class Error {
     }
     
     public static void ficheroErrores(ArrayList<Error> listaErrores){
-        File errores = new File("C:/Users/ivann/Desktop/pdl-main/material/errores.txt");
+        File errores = new File("C:/Users/Iván/Desktop/pdl-main/material/errores.txt");
         BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(errores));

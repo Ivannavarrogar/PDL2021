@@ -18,7 +18,7 @@ public class InicioCompilador {
            FileWriter errorFW = new FileWriter(error,false);
 
             
-            File codigoFuente = new File("C:/Users/ivann/Desktop/pdl-main/material/prueba.txt");
+            File codigoFuente = new File("C:/Users/Iván/Desktop/pdl-main/material/prueba.txt");
 
             Tablas tablas = new Tablas();
             

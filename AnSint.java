@@ -126,9 +126,9 @@ public class AnSint {
  
     
 private boolean esTerminal(String simbolo){
-  String [] noTerminales = {"A", "B", "C", "D", "DP", "E", "EP", "F", "G", "GP", "H", "I", "J", "K", "L", "P", "Q", "S", "SP", "T" ,"U", "UP", "V", "VP", "X"};
+  String [] noTerminales = {"A", "B", "C", "D", "DP", "E", "EP", "F", "H", "J", "K", "L", "P", "Q", "S", "SP", "T" ,"U", "UP", "V", "VP", "X"};
   boolean res= true;
-  for(int i=0; 25 > i; i++){
+  for(int i=0; 22 > i; i++){
     if(noTerminales[i].equals(simbolo)){
       res = false;
       return res;

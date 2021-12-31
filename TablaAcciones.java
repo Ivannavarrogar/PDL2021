@@ -4,27 +4,24 @@ public class TablaAcciones {
     private static final int B = 1;
     private static final int C = 2;
     private static final int D = 3;
-    private static final int DP = 4 ; 
+    private static final int DP = 4; 
     private static final int E = 5;    
     private static final int EP = 6;
     private static final int F = 7;
-    private static final int G = 8;
-    private static final int GP = 9;
-    private static final int H = 10;
-    private static final int I= 11;
-    private static final int J = 12;
-    private static final int K = 13;
-    private static final int L = 14;
-    private static final int P = 15;
-    private static final int Q = 16;
-    private static final int S = 17; 
-    private static final int SP = 18;  
-    private static final int T = 19;
-    private static final int U = 20;
-    private static final int UP = 21;
-    private static final int V = 22; 
-    private static final int VP = 23; 
-    private static final int X = 24;
+    private static final int H = 8;
+    private static final int J = 9;
+    private static final int K = 10;
+    private static final int L = 11;
+    private static final int P = 12;
+    private static final int Q = 13;
+    private static final int S = 14; 
+    private static final int SP = 15;  
+    private static final int T = 16;
+    private static final int U = 17;
+    private static final int UP = 18;
+    private static final int V = 19; 
+    private static final int VP = 20; 
+    private static final int X = 21;
     
 
     //Terminales
@@ -58,14 +55,14 @@ public class TablaAcciones {
 
     public TablaAcciones(){
         
-        matriz = new Tupla[25][25];
+        matriz = new Tupla[22][25];
 
-        matriz[A][CIERRAP] = new Tupla(33,"lambda");
-        matriz[A][BOOLEAN] = new Tupla(32,"T id K");
-        matriz[A][INT] = new Tupla(32,"T id K");
-        matriz[A][STRING] = new Tupla(32,"T id K");
+        matriz[A][CIERRAP] = new Tupla(32,"lambda");
+        matriz[A][BOOLEAN] = new Tupla(31,"T id K");
+        matriz[A][INT] = new Tupla(31,"T id K");
+        matriz[A][STRING] = new Tupla(31,"T id K");
         
-        matriz[B][FOR] = new Tupla(7,"for ( J ; E ; I ) { C }");
+        matriz[B][FOR] = new Tupla(7,"for ( J ; E ; J ) { C }");
         matriz[B][ID] = new Tupla(6,"S");
         matriz[B][IF] = new Tupla(5,"if ( E ) S");
         matriz[B][INPUT] = new Tupla(6,"S");
@@ -73,71 +70,56 @@ public class TablaAcciones {
         matriz[B][PRINT] = new Tupla(6,"S");
         matriz[B][RETURN] = new Tupla(6,"S");
         
-        matriz[C][FOR] = new Tupla(23,"B C");
-        matriz[C][ID] = new Tupla(23,"B C");
-        matriz[C][IF] = new Tupla(23,"B C");
-        matriz[C][INPUT] = new Tupla(23,"B C");
-        matriz[C][LET] = new Tupla(23,"B C");
-        matriz[C][PRINT] = new Tupla(23,"B C");
-        matriz[C][RETURN] = new Tupla(23,"B C");
-        matriz[C][CIERRAC] = new Tupla(24,"lambda");
+        matriz[C][FOR] = new Tupla(22,"B C");
+        matriz[C][ID] = new Tupla(22,"B C");
+        matriz[C][IF] = new Tupla(22,"B C");
+        matriz[C][INPUT] = new Tupla(22,"B C");
+        matriz[C][LET] = new Tupla(22,"B C");
+        matriz[C][PRINT] = new Tupla(22,"B C");
+        matriz[C][RETURN] = new Tupla(22,"B C");
+        matriz[C][CIERRAC] = new Tupla(23,"lambda");
         
-        matriz[D][CIERRAP] = new Tupla(42,"G DP");
-        matriz[D][CADENA] = new Tupla(42,"G DP");
-        matriz[D][ENTERO] = new Tupla(42,"G DP");
-        matriz[D][ID] = new Tupla(42,"G DP");
+        matriz[D][ABREP] = new Tupla(41,"V DP");
+        matriz[D][CADENA] = new Tupla(41,"V DP");
+        matriz[D][ENTERO] = new Tupla(41,"V DP");
+        matriz[D][ID] = new Tupla(41,"V DP");
   
-        matriz[DP][AND] = new Tupla(44,"lambda");
-        matriz[DP][CIERRAP] = new Tupla(44,"lambda");
-        matriz[DP][MAS] = new Tupla(44,"lambda");
-        matriz[DP][COMA] = new Tupla(44,"lambda");
-        matriz[DP][PCOMA] = new Tupla(44,"lambda");
-        matriz[DP][RELACIONAL] = new Tupla(43,"== G DP");
+        matriz[DP][AND] = new Tupla(43,"lambda");
+        matriz[DP][CIERRAP] = new Tupla(43,"lambda");
+        matriz[DP][MAS] = new Tupla(42,"+ V DP");
+        matriz[DP][COMA] = new Tupla(43,"lambda");
+        matriz[DP][PCOMA] = new Tupla(43,"lambda");
+        matriz[DP][RELACIONAL] = new Tupla(43,"lambda");
         
-        matriz[E][ABREP] = new Tupla(36,"U EP");
-        matriz[E][CADENA] = new Tupla(36,"U EP");
-        matriz[E][ENTERO] = new Tupla(36,"U EP");
-        matriz[E][ID] = new Tupla(36,"U EP");
+        matriz[E][ABREP] = new Tupla(35,"U EP");
+        matriz[E][CADENA] = new Tupla(35,"U EP");
+        matriz[E][ENTERO] = new Tupla(35,"U EP");
+        matriz[E][ID] = new Tupla(35,"U EP");
 
-        matriz[EP][AND] = new Tupla(37,"&& U EP");
-        matriz[EP][CIERRAP] = new Tupla(38,"lambda");
-        matriz[EP][COMA] = new Tupla(38,"lambda");
-        matriz[EP][PCOMA] = new Tupla(38,"lambda");
+        matriz[EP][AND] = new Tupla(36,"&& U EP");
+        matriz[EP][CIERRAP] = new Tupla(37,"lambda");
+        matriz[EP][COMA] = new Tupla(37,"lambda");
+        matriz[EP][PCOMA] = new Tupla(37,"lambda");
 
-        matriz[F][FUNCTION] = new Tupla(29, "function id H ( A ) { C }");
+        matriz[F][FUNCTION] = new Tupla(28, "function id H ( A ) { C }");
         
-        matriz[G][ABREP] = new Tupla(45, "V GP");
-        matriz[G][CADENA] = new Tupla(45, "V GP");
-        matriz[G][ENTERO] = new Tupla(45, "V GP");
-        matriz[G][ID] = new Tupla(45, "V GP");
+        matriz[H][ABREP] = new Tupla(30, "lambda");
+        matriz[H][BOOLEAN] = new Tupla(29, "T");
+        matriz[H][INT] = new Tupla(29, "T");
+        matriz[H][STRING] = new Tupla(29, "T");
         
-        matriz[GP][ASIGNACION] = new Tupla(46, "%= V GP");
-        matriz[GP][AND] = new Tupla(47, "lambda");
-        matriz[GP][CIERRAP] = new Tupla(47, "lambda");
-        matriz[GP][MAS] = new Tupla(47, "lambda");
-        matriz[GP][COMA] = new Tupla(47, "lambda");
-        matriz[GP][PCOMA] = new Tupla(47, "lambda");
-        matriz[GP][RELACIONAL] = new Tupla(47, "lambda");
+        matriz[J][CIERRAP] = new Tupla(9, "lambda");
+        matriz[J][PCOMA] = new Tupla(9, "lambda");
+        matriz[J][ID] = new Tupla(8, "id = E");
         
-        matriz[H][ABREP] = new Tupla(31, "lambda");
-        matriz[H][BOOLEAN] = new Tupla(30, "T");
-        matriz[H][INT] = new Tupla(30, "T");
-        matriz[H][STRING] = new Tupla(30, "T");
-  
-        matriz[I][CIERRAP] = new Tupla(9, "lambda");
-        matriz[I][ID] = new Tupla(8, "id = id + entero");
+        matriz[K][CIERRAP] = new Tupla(34, "lambda");
+        matriz[K][COMA] = new Tupla(33, ", T id K");
         
-        matriz[J][PCOMA] = new Tupla(11, "lambda");
-        matriz[J][ID] = new Tupla(10, "id = entero");
-        
-        matriz[K][CIERRAP] = new Tupla(35, "lambda");
-        matriz[K][COMA] = new Tupla(34, ", T id K");
-        
-        matriz[L][ABREP] = new Tupla(25,"E Q");
-        matriz[L][CIERRAP] = new Tupla(26,"lambda");
-        matriz[L][CADENA] = new Tupla(25,"E Q");
-        matriz[L][ENTERO] = new Tupla(25,"E Q");
-        matriz[L][ID] = new Tupla(25,"E Q");
+        matriz[L][ABREP] = new Tupla(24,"E Q");
+        matriz[L][CIERRAP] = new Tupla(25,"lambda");
+        matriz[L][CADENA] = new Tupla(24,"E Q");
+        matriz[L][ENTERO] = new Tupla(24,"E Q");
+        matriz[L][ID] = new Tupla(24,"E Q");
         
         matriz[P][FOR] = new Tupla(1,"B P");
         matriz[P][ID] = new Tupla(1,"B P");
@@ -149,51 +131,52 @@ public class TablaAcciones {
         matriz[P][FUNCTION] = new Tupla(2,"F P");
         matriz[P][FINCADENA] = new Tupla(3,"lambda");
         
-        matriz[Q][CIERRAP] = new Tupla(28,"lambda");
-        matriz[Q][COMA] = new Tupla(27,", E Q");
+        matriz[Q][CIERRAP] = new Tupla(27,"lambda");
+        matriz[Q][COMA] = new Tupla(26,", E Q");
   
-        matriz[S][ID] = new Tupla(15,"id SP");
-        matriz[S][INPUT] = new Tupla(18,"input ( id ) ;");
-        matriz[S][PRINT] = new Tupla(17,"print ( E ) ;");
-        matriz[S][RETURN] = new Tupla(16,"return X ;");
+        matriz[S][ID] = new Tupla(13,"id SP");
+        matriz[S][INPUT] = new Tupla(16,"input ( id ) ;");
+        matriz[S][PRINT] = new Tupla(15,"print ( E ) ;");
+        matriz[S][RETURN] = new Tupla(14,"return X ;");
   
-        matriz[SP][ABREP] = new Tupla(20,"( L ) ;");
-        matriz[SP][IGUAL] = new Tupla(19,"= E ;");
+
+        matriz[SP][ABREP] = new Tupla(19,"( L ) ;");
+        matriz[SP][IGUAL] = new Tupla(17,"= E ;");
+        matriz[SP][ASIGNACION] = new Tupla(18,"%= E ;");
   
-        matriz[T][BOOLEAN] = new Tupla(13,"boolean");
-        matriz[T][INT] = new Tupla(12,"int");
-        matriz[T][STRING] = new Tupla(14,"string");
+        matriz[T][BOOLEAN] = new Tupla(11,"boolean");
+        matriz[T][INT] = new Tupla(10,"int");
+        matriz[T][STRING] = new Tupla(12,"string");
         
-        matriz[U][ABREP] =new Tupla(39,"D UP");
-        matriz[U][CADENA] = new Tupla(39,"D UP");
-        matriz[U][ENTERO] = new Tupla(39,"D UP");
-        matriz[U][ID] = new Tupla(39,"D UP");
+        matriz[U][ABREP] =new Tupla(38,"D UP");
+        matriz[U][CADENA] = new Tupla(38,"D UP");
+        matriz[U][ENTERO] = new Tupla(38,"D UP");
+        matriz[U][ID] = new Tupla(38,"D UP");
         
-        matriz[UP][AND] = new Tupla(41,"lambda");
-        matriz[UP][CIERRAP] = new Tupla(41,"lambda");
-        matriz[UP][COMA] = new Tupla(41,"lambda");
-        matriz[UP][PCOMA] = new Tupla(41,"lambda");
-        matriz[UP][MAS] = new Tupla(40,"+ D UP");
+        matriz[UP][AND] = new Tupla(40,"lambda");
+        matriz[UP][CIERRAP] = new Tupla(40,"lambda");
+        matriz[UP][COMA] = new Tupla(40,"lambda");
+        matriz[UP][PCOMA] = new Tupla(40,"lambda");
+        matriz[UP][RELACIONAL] = new Tupla(39,"== D UP");
   
-        matriz[V][ABREP] =new Tupla(49,"( E )");
-        matriz[V][CADENA] =new Tupla(51,"cadena");
-        matriz[V][ENTERO] = new Tupla(50,"entero");
-        matriz[V][ID] = new Tupla(48,"id VP");
+        matriz[V][ABREP] =new Tupla(45,"( E )");
+        matriz[V][CADENA] =new Tupla(47,"cadena");
+        matriz[V][ENTERO] = new Tupla(46,"entero");
+        matriz[V][ID] = new Tupla(44,"id VP");
   
-        matriz[VP][ASIGNACION] = new Tupla(53,"lambda");
-        matriz[VP][AND] = new Tupla(53,"lambda");
-        matriz[VP][CIERRAP] = new Tupla(53,"lambda");
-        matriz[VP][MAS] = new Tupla(53,"lambda");
-        matriz[VP][COMA] = new Tupla(53,"lambda");
-        matriz[VP][PCOMA] = new Tupla(53,"lambda");
-        matriz[VP][RELACIONAL] = new Tupla(53,"lambda");
-        matriz[VP][ABREP] = new Tupla(52,"( L )");
+        matriz[VP][AND] = new Tupla(49,"lambda");
+        matriz[VP][CIERRAP] = new Tupla(49,"lambda");
+        matriz[VP][MAS] = new Tupla(49,"lambda");
+        matriz[VP][COMA] = new Tupla(49,"lambda");
+        matriz[VP][PCOMA] = new Tupla(49,"lambda");
+        matriz[VP][RELACIONAL] = new Tupla(49,"lambda");
+        matriz[VP][ABREP] = new Tupla(48,"( L )");
   
-        matriz[X][CIERRAP] = new Tupla(21,"E");
-        matriz[X][PCOMA] = new Tupla(22,"lambda");
-        matriz[X][CADENA] = new Tupla(21,"E");
-        matriz[X][ENTERO] = new Tupla(21,"E");
-        matriz[X][ID] = new Tupla(21,"E");
+        matriz[X][ABREP] = new Tupla(20,"E");
+        matriz[X][PCOMA] = new Tupla(21,"lambda");
+        matriz[X][CADENA] = new Tupla(20,"E");
+        matriz[X][ENTERO] = new Tupla(20,"E");
+        matriz[X][ID] = new Tupla(20,"E");
     }
 
     public static String buscarAccion (String noTerminal, String terminal){
@@ -284,14 +267,8 @@ public class TablaAcciones {
                 return EP;
             case "F":
                 return F;
-            case "G":
-                return G;
-            case "GP":
-                return GP;
             case "H":
                 return H;
-            case "I":
-                return I;
             case "J":
                 return J;
             case "K":
