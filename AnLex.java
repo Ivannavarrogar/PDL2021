@@ -14,6 +14,10 @@ public class AnLex {
    private static int posLinea;
    private Tablas tablas;
    private FileWriter tokenFW;
+   private boolean flagDuplicado;
+   private boolean flagDuplicadoGlobal;
+   private String lexemaSemantico;
+   private int contLinea;
 
    public AnLex(File codigoFuente, Tablas tablas, FileWriter tokenFW) {
       try {
@@ -32,6 +36,10 @@ public class AnLex {
       new MTransiciones();
       estado = 0;
       posLinea = 0;
+      flagDuplicado = false;
+      flagDuplicadoGlobal = true;
+      lexemaSemantico = "";
+      contLinea = 0;
    }
 
    /**
@@ -188,6 +196,7 @@ public class AnLex {
       if (posLinea == 0) {
          try {
             linea = br.readLine();
+            contLinea++;
             //Si es null ha terminado de leer el fichero
             if (linea == null) {
                return null;
@@ -201,6 +210,8 @@ public class AnLex {
       int contador = 0;
       int valor = 0;
       Token tk = new Token("ignorar", "" + 90);
+      flagDuplicado = false;
+      flagDuplicadoGlobal = true;
       //Algoritmo del Automata
       while (posLinea < linea.length()) {
          //Si estamos en un estado final, volvemos al inicial
@@ -284,16 +295,23 @@ public class AnLex {
                      return tk;
                   }
                   // Identificador
-                  Atributos atrib = tablas.existeAtributo(lexema);
-                  if (atrib != null) {
-                     tk = new Token("id",lexema);
+                  boolean duplicado = tablas.existeAtributoA(lexema);  //true si existe
+                  boolean duplicadoGlobal = tablas.existeAtributoGlobal(lexema); //true si existe
+                  lexemaSemantico= lexema;
+                  if (!duplicadoGlobal){
+                     lexemaSemantico= lexema;
+                     flagDuplicadoGlobal = false;
+                  }
+                  if (duplicado) {
+                     tk = new Token("id",tablas.buscarPuntero(lexema));
                      tokenFW.write(tk.toString());
                      tokenFW.flush();
                      lexema = "";
+                     flagDuplicado = true;
                      return tk;
                   } else {
-                     tablas.insertarAtributos(lexema);
-                     tk = new Token("id",lexema);
+                     tablas.getTabla(tablas.getIdTablaActiva()).insertarId(lexema);
+                     tk = new Token("id",tablas.buscarPuntero(lexema));
                      tokenFW.write(tk.toString());
                      tokenFW.flush();
                      lexema = "";
@@ -392,5 +410,17 @@ public class AnLex {
          lexema = "";
       }
       return tk;
+   }
+   public boolean getFlagDuplicado(){
+      return flagDuplicado;
+   }
+   public int getContLinea(){
+      return contLinea;
+   }
+   public boolean getFlagDuplicadoGlobal(){
+      return flagDuplicadoGlobal;
+   }
+   public String getLexemaSemantico(){
+      return lexemaSemantico;
    }
 }

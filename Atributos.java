@@ -1,31 +1,31 @@
 public class Atributos {
     private String lexema;
-    private int idAtributos=0;
     private String tipo;
     private int desplazamiento;
     private int numeroParametros;
-    private int idTabla;
     private String tipoParametro;
+    private String modoPaso;
     private String tipoDevuelto;
     private String etiqueta;
 
 
-    public Atributos(int idAtributos, String lexema, int idTabla){
-        this.lexema = lexema;
-        this.idAtributos = idAtributos;
-        this.idTabla=idTabla;
-        this.desplazamiento=0;
-
-    }
-
-    public Atributos(String tipo, int numeroParametros, String tipoParametro, String lexema, String tipoDevuelto, String etiqueta){
+    public Atributos( String lexema, String tipo, int numeroParametros, String tipoParametro, String tipoDevuelto, String etiqueta){
         this.lexema = lexema;
         this.tipo=tipo;
         this.numeroParametros= numeroParametros;
+        this.modoPaso = "";
         this.tipoParametro=tipoParametro;
         this.tipoDevuelto=tipoDevuelto;
         this.etiqueta=etiqueta;
     }
+
+    public Atributos( String lexema){
+        this.lexema = lexema;
+        this.tipo = "";
+        this.desplazamiento=0;
+
+    }
+
     
     public String getLexema() {
         return this.lexema;
@@ -42,15 +42,8 @@ public class Atributos {
     public int getDesplazamiento() {
         return this.desplazamiento;
     }
-    public int getidTabla() {
-        return this.idTabla;
-    }
 
-   public int getIdAtributos() {
-        return this.idAtributos;
-    }
-
-    public void setDesplazamiento(int desplazamiento) {
+    public void setDesplazamientoId(int desplazamiento) {
         this.desplazamiento = desplazamiento;
     }
 

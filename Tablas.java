@@ -24,6 +24,10 @@ class Tablas {
         mapaTablas.put(0, new TablaSimbolos("Main",this));
     }
 
+    public TablaSimbolos getTabla(int id){
+        return mapaTablas.get(id);
+    }
+
     public int getcontadorTablas(){
         return contadorTablas;
     }
@@ -64,25 +68,83 @@ class Tablas {
     /*
     * Inserta un atributo en la tabla activa
     */
-    public void insertarAtributos(String lexema){
-        TablaSimbolos tabla = mapaTablas.get(tablaActiva);
-        tabla.insertarAtributos(lexema, tablaActiva);
+    public void insertarId(Atributos id){
+        
     }
 
     /*  
     * Comprueba si existe el atributo correspondiente al lexema
     */
-    public Atributos existeAtributo(String lexema){
+    public boolean existeAtributoA(String lexema){
         
         TablaSimbolos tabla = mapaTablas.get(getIdTablaActiva());
         ArrayList<Atributos> atributos = tabla.getAtributos();
 
         for (Atributos atrib : atributos) {
             if( atrib.getLexema().equals(lexema)){
-                return atrib;
+                return true;
             }       
         }
-        return null;
+        return false;
+    }
+    
+    public boolean existeAtributoGlobal(String lexema){
+        for (int i = 0 ; i < contadorTablas ; i++){
+            TablaSimbolos tabla = mapaTablas.get(i);
+            ArrayList<Atributos> atributos = tabla.getAtributos();
+
+            for (Atributos atrib : atributos) {
+                if( atrib.getLexema().equals(lexema)){
+                    return true;
+                }       
+            }       
+        }
+        return false;
+    
+    }
+
+    public String buscarIndice(String lexema){
+        TablaSimbolos tabla = mapaTablas.get(getIdTablaActiva());
+        String resultado = "";
+        for (int i = 0 ; i < tabla.getIndex() ; i++){
+            if (tabla.getAtributo(i).getLexema().equals(lexema)){
+                resultado+= i; 
+                break;
+            }
+        }
+        return resultado;
+    }
+    
+    public String buscarPuntero(String lexema){
+        String resultado = "";
+        for (int i = 0 ; i < contadorTablas ; i++){
+            TablaSimbolos tabla = mapaTablas.get(i);
+            for (int j = 0 ; j <= tabla.getIndex() ; j++){
+                if (tabla.getAtributo(j).getLexema().equals(lexema)){
+                    resultado+= i + "-" + j; 
+                    break;
+                }
+            }
+        }
+        return resultado;
+    }
+
+    public Atributos buscarPorPuntero (String puntero){
+        int tabla = -1;
+        int indice = 0;
+        String aux = "";
+        for(int i=0; i  < puntero.length(); i++){
+            if(!(puntero.charAt(i) == ('-'))){
+              aux+= puntero.charAt(i);    
+            }
+            else{
+                    tabla = Integer.parseInt(aux);
+                    aux= "";
+            }
+          }
+          indice = Integer.parseInt(aux);
+          aux= "";
+          return mapaTablas.get(tabla).getAtributo(indice);
     }
 
     

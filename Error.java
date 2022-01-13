@@ -11,7 +11,7 @@ public class Error {
     }
     
     public static void ficheroErrores(ArrayList<Error> listaErrores){
-        File errores = new File("C:/Users/Iván/Desktop/pdl-main/material/errores.txt");
+        File errores = new File("../pdl-main/material/errores.txt");
         BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(errores));
@@ -26,6 +26,20 @@ public class Error {
         }
     }
     
+    public static void ficheroParse(String parses){
+        File parse = new File("../pdl-main/material/parse.txt");
+        try {
+            FileWriter parseFW =new FileWriter(parse,false);
+            
+            parseFW.write(parses);
+            parseFW.flush();
+            parseFW.close();
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
     public String getMensage(){
         return this.mensage;
     }
