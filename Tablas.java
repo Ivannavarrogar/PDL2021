@@ -39,7 +39,9 @@ class Tablas {
     public int getIdTablaActiva(){
         return tablaActiva;
     }
-    
+    public void setIdTablaActiva(int index){
+        this.tablaActiva= index;
+    }
     /*
     * Cambia a la nueva tabla activa
     */
@@ -54,7 +56,8 @@ class Tablas {
         TablaSimbolos nuevaTabla = new TablaSimbolos(nombreTablaSimbolos,this);
         mapaTablas.put(contadorTablas, nuevaTabla);
         contadorTablas++;
-        return contadorTablas--;
+        int res = contadorTablas-1;
+        return res;
     }
     
     /*
@@ -76,27 +79,32 @@ class Tablas {
     * Comprueba si existe el atributo correspondiente al lexema
     */
     public boolean existeAtributoA(String lexema){
-        
+        boolean flagVacio = true;
         TablaSimbolos tabla = mapaTablas.get(getIdTablaActiva());
-        ArrayList<Atributos> atributos = tabla.getAtributos();
 
-        for (Atributos atrib : atributos) {
-            if( atrib.getLexema().equals(lexema)){
+        for (int j = 0 ; j <= tabla.getIndex() && flagVacio  ; j++){
+            if (tabla.getAtributo(j)!= null){ 
+            if (tabla.getAtributo(j).getLexema().equals(lexema)){
                 return true;
-            }       
+            }
         }
+        else flagVacio= false;
+        } 
         return false;
     }
     
     public boolean existeAtributoGlobal(String lexema){
+        boolean flagVacio = true;
         for (int i = 0 ; i < contadorTablas ; i++){
             TablaSimbolos tabla = mapaTablas.get(i);
-            ArrayList<Atributos> atributos = tabla.getAtributos();
 
-            for (Atributos atrib : atributos) {
-                if( atrib.getLexema().equals(lexema)){
+            for (int j = 0 ; j <= tabla.getIndex() && flagVacio  ; j++){
+                if (tabla.getAtributo(j)!= null){ 
+                if (tabla.getAtributo(j).getLexema().equals(lexema)){
                     return true;
-                }       
+                }
+            }
+            else flagVacio= false;
             }       
         }
         return false;
@@ -117,13 +125,16 @@ class Tablas {
     
     public String buscarPuntero(String lexema){
         String resultado = "";
-        for (int i = 0 ; i < contadorTablas ; i++){
+        boolean flag = true;
+        for (int i = 0 ; i < contadorTablas && flag ; i++){
             TablaSimbolos tabla = mapaTablas.get(i);
-            for (int j = 0 ; j <= tabla.getIndex() ; j++){
+            for (int j = 0 ; j <= tabla.getIndex() && flag ; j++){
+                if (tabla.getAtributo(j)!= null){ 
                 if (tabla.getAtributo(j).getLexema().equals(lexema)){
                     resultado+= i + "-" + j; 
-                    break;
+                    flag = false;
                 }
+            }
             }
         }
         return resultado;
@@ -146,6 +157,8 @@ class Tablas {
           aux= "";
           return mapaTablas.get(tabla).getAtributo(indice);
     }
+
+    
 
     
 }

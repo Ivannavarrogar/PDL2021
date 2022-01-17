@@ -9,14 +9,14 @@ public class Atributos {
     private String etiqueta;
 
 
-    public Atributos( String lexema, String tipo, int numeroParametros, String tipoParametro, String tipoDevuelto, String etiqueta){
+    public Atributos( String lexema, String tipo){
         this.lexema = lexema;
         this.tipo=tipo;
-        this.numeroParametros= numeroParametros;
+        this.numeroParametros= 0;
         this.modoPaso = "";
-        this.tipoParametro=tipoParametro;
-        this.tipoDevuelto=tipoDevuelto;
-        this.etiqueta=etiqueta;
+        this.tipoParametro="";
+        this.tipoDevuelto="";
+        this.etiqueta="";
     }
 
     public Atributos( String lexema){
@@ -51,8 +51,8 @@ public class Atributos {
         return this.numeroParametros;
     }
 
-    public void setNumeroParametros(int numeroParametros) {
-        this.numeroParametros = numeroParametros;
+    public void setNumeroParametros() {
+        this.numeroParametros++;
     }
 
     public String getTipoParametro() {

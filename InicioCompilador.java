@@ -2,13 +2,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 
 public class InicioCompilador {
 
     public static void main(String[] args) {
         try {
+            final ArrayList<Error> listaErrores = new ArrayList<Error>();
             File tokens = new File("../pdl-main/material/tokens.txt");
-            File tablaSimbolos = new File("tabla.txt");
+            File tablaSimbolos = new File("../pdl-main/material/tabla.txt");
             //File parse = new File("parse.txt");   // estos dos se crean en la clase error
             //File error = new File("errores.txt");
 
@@ -24,8 +26,8 @@ public class InicioCompilador {
             Tablas tablas = new Tablas();
             
 
-            AnLex lex = new AnLex(codigoFuente,tablas,tokensFW);
-            AnSint sint = new AnSint(lex, tablas);
+            AnLex lex = new AnLex(codigoFuente,tablas,tokensFW, listaErrores);
+            AnSint sint = new AnSint(lex, tablas, tablaFW, listaErrores);
 
             sint.analisisSintactico();
            

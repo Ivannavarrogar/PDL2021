@@ -96,7 +96,7 @@ public class MTransiciones{
         matriz[7][CIERRAP] = new Tupla(13,"MT");
         matriz[7][ABREP] = new Tupla(13,"MT");
         matriz[7][AND] = new Tupla(0,"MBAKL");
-        matriz[7][IGUAL] = new Tupla(1,"MAL");
+        matriz[7][IGUAL] = new Tupla(0,"MAL");
         matriz[7][MAS] = new Tupla(13,"MT");
         matriz[7][COMA] = new Tupla(13,"MT");
 
@@ -108,6 +108,7 @@ public class MTransiciones{
         matriz[8][CIERRAP] = new Tupla(13,"OT");
         matriz[8][OTROS] = new Tupla(13,"OL");
         matriz[8][PORCEN] = new Tupla(13,"OL");
+        matriz[8][COMA] = new Tupla(13,"OL");
         matriz[8][IGUAL] = new Tupla(1,"OLA");
 
         //Cadenas

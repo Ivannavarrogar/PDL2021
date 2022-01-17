@@ -9,7 +9,7 @@ public class AnLex {
    private static BufferedReader br;
    private static String linea;
    private static ArrayList<Token> tokensArrayList;
-   private static ArrayList<Error> listaErrores;
+   private ArrayList<Error> listaErrores;
    private static int estado;
    private static int posLinea;
    private Tablas tablas;
@@ -19,7 +19,7 @@ public class AnLex {
    private String lexemaSemantico;
    private int contLinea;
 
-   public AnLex(File codigoFuente, Tablas tablas, FileWriter tokenFW) {
+   public AnLex(File codigoFuente, Tablas tablas, FileWriter tokenFW, ArrayList<Error> listaErrores) {
       try {
          fuente = codigoFuente;
          fr = new FileReader(fuente);
@@ -32,7 +32,7 @@ public class AnLex {
       this.tablas = tablas;
       linea = "";
       tokensArrayList = new ArrayList<Token>();
-      listaErrores = new ArrayList<Error>();
+      this.listaErrores = listaErrores;
       new MTransiciones();
       estado = 0;
       posLinea = 0;
@@ -172,6 +172,8 @@ public class AnLex {
             tokenFW.write(tk.toString());
             tokenFW.flush();
             lexema = "";
+
+            return tk;
          case "for":
             tk = new Token("for", "" + 23);
             tokenFW.write(tk.toString());
@@ -237,6 +239,9 @@ public class AnLex {
             switch (accion.charAt(j)) {
                case 'A':
                   lexema += caracter;
+                  if (posLinea==(linea.length()-1)){
+                     accion= accion + "M";
+                  }
                   break;
                case 'B':
                   lexema += caracter;
@@ -296,12 +301,8 @@ public class AnLex {
                   }
                   // Identificador
                   boolean duplicado = tablas.existeAtributoA(lexema);  //true si existe
-                  boolean duplicadoGlobal = tablas.existeAtributoGlobal(lexema); //true si existe
+                  flagDuplicadoGlobal = tablas.existeAtributoGlobal(lexema); //true si existe
                   lexemaSemantico= lexema;
-                  if (!duplicadoGlobal){
-                     lexemaSemantico= lexema;
-                     flagDuplicadoGlobal = false;
-                  }
                   if (duplicado) {
                      tk = new Token("id",tablas.buscarPuntero(lexema));
                      tokenFW.write(tk.toString());
@@ -320,15 +321,13 @@ public class AnLex {
                case 'O':
                   if (valor > 32767) {
                      listaErrores.add(new Error("Este entero " + valor + " ha sobrepasado el valor maximo(32767)"));
-                     valor = 0;
-                     break;
-                  } else {
+                  }
                      tk = new Token("cteEntera", "" + valor);
                      tokenFW.write(tk.toString());
                      tokenFW.flush();
                      valor = 0;
                      return tk;
-                  }
+                  
                case 'Q':
                   if (posLinea > accion.length()) {
                      tk = new Token("cteEntera", "" + valor);
@@ -421,6 +420,7 @@ public class AnLex {
       return flagDuplicadoGlobal;
    }
    public String getLexemaSemantico(){
+
       return lexemaSemantico;
    }
 }
