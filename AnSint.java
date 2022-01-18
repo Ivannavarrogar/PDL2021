@@ -196,6 +196,8 @@ private boolean sonIguales(String pila, String token){
                 return token.equals("operAritmetico");            
             case "==":
                 return token.equals("operRelacional");
+            case "%=":
+            return token.equals("operAsignacionResto");
             case "&&":
                 return token.equals("operLogico");
             case "=":
@@ -256,7 +258,7 @@ private void ejecutarSemantica(String accionS) throws IOException{
                 }
                 else {
                   listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", el id: " + lex.getLexemaSemantico() 
-                  + " ya existe1." ));
+                  + " ya existe." ));
                 }
                 break;
       case "4.2" :
@@ -459,31 +461,35 @@ private void ejecutarSemantica(String accionS) throws IOException{
                 if (lex.getFlagDuplicadoGlobal()){
                   tipoPila= tablas.buscarPuntero(lex.getLexemaSemantico());
                 }
-                else{ listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", el id: " + lex.getLexemaSemantico() + 
-                " no ha sido declarado antes." ));}
+                else if (!lex.getFlagDuplicado()){
+                  tablas.getTabla(0).insertarId(lex.getLexemaSemantico());
+                  Atributos atributoGlobal = tablas.getTabla(0).getAtributo(tablas.getTabla(0).getIndex());
+                  atributoGlobal.setTipo("ent");
+                  atributoGlobal.setDesplazamientoId(tablas.getTabla(0).getDesplazamiento());
+                  tablas.getTabla(0).setDesplazamiento(2);
+                  tipoPila= tablas.buscarPuntero(lex.getLexemaSemantico());
+                  
+
+                  
+                }
+                
                 break;
       case "16.2" :
                 pAux1.pop();
                 pAux2.pop();
                 pAux1.pop();
                 pAux2.pop();
-                if (!lex.getFlagDuplicadoGlobal()){
-                  tablas.getTabla(0).insertarId(lex.getLexemaSemantico());
-                  Atributos atributoGlobal = tablas.getTabla(0).getAtributo(tablas.getTabla(0).getIndex());
-                  atributoGlobal.setTipo("ent");
-                  atributoGlobal.setDesplazamientoId(tablas.getTabla(0).getDesplazamiento());
-                  tablas.getTabla(0).setDesplazamiento(2);
-                }
-                else {
+                
+                
                 String tipoE5= tablas.buscarPorPuntero(pAux2.peek()).getTipo();
                 if(tipoE5 == "func"){
                   tipoE5= tablas.buscarPorPuntero(pAux2.peek()).getTipoDevuelto();
                 }
                 if (tipoE5 != "ent" && tipoE5 != "cad"){
-                  listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", la función input() solo acpeta enteros o cadenas." ));
+                  listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", la función input() solo acepta enteros o cadenas." ));
                   tipoE5="error";
                 }
-              }
+              
                 pAux1.pop();
                 pAux2.pop();
                 pAux1.pop();
@@ -560,7 +566,8 @@ private void ejecutarSemantica(String accionS) throws IOException{
                   pAux2.push(tipoB);
                   break;                                                             
       case "24.1" :
-                 if (pAux2.peek() == "error" ){
+                 if (pAux2.peek() == "error"
+                 ){
                     pAux1.pop();
                     pAux2.pop();
                     pAux1.pop();
@@ -587,7 +594,7 @@ private void ejecutarSemantica(String accionS) throws IOException{
                         }
                   
                         else{
-                          listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", todos los argumentos deben ser del mismo tipo2." ));                      
+                          listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", todos los argumentos deben ser del mismo tipo." ));                      
                           pAux1.pop();
                           pAux2.pop();
                           pAux2.pop();
@@ -629,7 +636,7 @@ private void ejecutarSemantica(String accionS) throws IOException{
               pAux2.pop();
               pAux2.push(tipoQ);
             } else{
-                listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", todos los argumentos deben ser del mismo tipo3." ));
+                listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", todos los argumentos deben ser del mismo tipo." ));
                 pAux1.pop();
                 pAux2.pop();
                 pAux1.pop();
@@ -698,6 +705,16 @@ private void ejecutarSemantica(String accionS) throws IOException{
                 pAux1.pop();
                 pAux2.pop();
                 if (pAux2.peek()!="error"){ 
+                  if (tipoC1 != "ent" && tipoC1 != "cad" && tipoC1 != "bool" && 
+                  
+                  
+                  tipoC1 != "" ){
+                    String tipoC1P = tipoC1;
+                    tipoC1 = tablas.buscarPorPuntero(tipoC1).getTipo();
+                    if (tipoC1 == "func"){
+                      tipoC1 = tablas.buscarPorPuntero(tipoC1P).getTipoDevuelto();
+                    }
+                  }
                   if(tipoC1 != tablas.buscarPorPuntero(pAux2.peek()).getTipoDevuelto()){ // queremos comparar tipodevuelto, no func
                     if (tablas.buscarPorPuntero(pAux2.peek()).getTipoDevuelto() == ""){
                       listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", esta función es vacía y no puede devolver nada."));
@@ -719,7 +736,7 @@ private void ejecutarSemantica(String accionS) throws IOException{
                     tablaFW.write(tablas.getTabla(0).toStringF(indiceE));
                     tablaFW.flush();
                     }
-                                      
+
                 tablas.eliminarTabla(1);
                 flagFuncFalsa = false;
                 tablas.setIdTablaActiva(0);
@@ -754,14 +771,14 @@ private void ejecutarSemantica(String accionS) throws IOException{
                   }
                 }
                 else {
-                  listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", el id: " + lex.getLexemaSemantico()  + " ya existe2." ));
+                  listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", el id: " + lex.getLexemaSemantico()  + " ya existe." ));
                 }
                 break;     
       case "31.2" :
                 String tipoId1 = pAux2.peek();
                 if (pAux2.peek() != tipoId1 || pAux2.peek() == "error"){
                   tipoId1 = "error";
-                  listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", todos los argumentos deben ser del mismo tipo1." ));
+                  listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", todos los argumentos deben ser del mismo tipo." ));
                 } 
                 pAux1.pop();
                 pAux2.pop();
@@ -793,7 +810,7 @@ private void ejecutarSemantica(String accionS) throws IOException{
                   }
                 }
                 else {
-                  listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", el id: " + lex.getLexemaSemantico() + " ya existe3." ));
+                  listaErrores.add(new Error("Error semántico en la linea " + lex.getContLinea() + ", el id: " + lex.getLexemaSemantico() + " ya existe." ));
                 }
                 break;
       case "33.2" :

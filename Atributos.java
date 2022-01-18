@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Atributos {
     private String lexema;
     private String tipo;
@@ -7,6 +9,7 @@ public class Atributos {
     private String modoPaso;
     private String tipoDevuelto;
     private String etiqueta;
+    
 
 
     public Atributos( String lexema, String tipo){

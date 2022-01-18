@@ -84,7 +84,8 @@ import java.util.HashMap;
         }
         
         public void eliminarId(String lexema){
-        for (int i = this.getIndex() ; i >= 0 ; i--){
+        for (int i = this.getIndex() ; i >= 0 ; i--
+        ){
             if (this.getAtributo(i).getLexema().equals(lexema)){ 
                 mapaAtributos.remove(i);
                 index--;
